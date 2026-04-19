@@ -1,15 +1,18 @@
-import { Home, View } from 'lucide-react'
+import { View } from 'lucide-react'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Home from './pages/home'
 import Pricing from './pages/Pricing'
 import Projects from './pages/Projects'
 import MyProjects from './pages/MyProjects'
 import Preview from './pages/Preview'
 import Community from './pages/Community'
+import Navbar from './components/Navbar'
 
 export default function App() {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path='/' element ={<Home/>} />
         <Route path='/pricing' element ={<Pricing/>} />
