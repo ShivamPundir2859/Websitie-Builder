@@ -1,0 +1,61 @@
+# Node modules
+node_modules/
+
+# Dependency directories
+client/node_modules/
+
+# Build outputs
+dist/
+client/dist/
+
+# Vite cache
+node_modules/.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache
+.npm
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Thumbs.db
+
+# Generated files
+public/*.map
+
+# Prisma
+client/src/prisma/
+client/tsconfig.tsbuildinfo
+
+# VS Code extension history
+.history/
