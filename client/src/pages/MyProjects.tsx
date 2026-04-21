@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import type { Project } from '../types';
-import { Loader2Icon, PlusIcon } from 'lucide-react';
+import { Loader2Icon, PlusIcon, TrashIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { dummyProjects } from '../assets/assets';
+import Footer from '../components/Footer';
 
 const MyProjects = () => {
   const [loading, setLoading] = useState(true);
@@ -15,6 +16,10 @@ const MyProjects = () => {
     setTimeout(() => {
       setLoading(false)
     }, 1000)
+  }
+
+  const deleteProject = async (projectId:string) => {
+
   }
 
   useEffect(() => {
@@ -41,7 +46,7 @@ const MyProjects = () => {
 
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
               {projects.map((project) => (
-                <div  key={project.id} className='relative group cursor-pointer bg-gray-900/60 border
+                <div onClick={()=> navigate(`/projects/${project.id}`)} key={project.id} className='relative group cursor-pointer bg-gray-900/60 border
                 border-gray-700 rounded-lg overflow-hidden shadow-md group
                 hover:shadow-indigo-700/30 hover:border-indigo-800/80
                 transition-all duration-300'>
@@ -87,7 +92,12 @@ const MyProjects = () => {
 
                       </div>
                     </div>
-
+                    <div onClick={e=> e.stopPropagation}>
+                      <TrashIcon className='absolute top-3 right-3
+                      scale-0 group-hover:scale-100  bg-white pd-1.5 size-5
+                      rounded text-red-500 text-xl cursor-pointer
+                      transition-all' onClick={()=> deleteProject(project.id)} />
+                    </div>
                 </div>
               ))}
             </div>
@@ -102,11 +112,9 @@ const MyProjects = () => {
               Create New
             </button>
           </div>
-        )
-        }
-
-
+        )}
       </div>
+      <Footer />
     </>
   )
 }
