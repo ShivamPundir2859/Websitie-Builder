@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import type { Project } from '../types'
 import { ArrowBigDownDashIcon, EyeIcon, EyeOff, EyeOffIcon, FullscreenIcon, Laptop, LaptopIcon, Loader2Icon, MessageSquare, MessageSquareIcon, SaveIcon, Smartphone, SmartphoneIcon, Tablet, TabletIcon, XIcon } from 'lucide-react'
-import { dummyConversations, dummyProjects } from '../assets/assets'
+import { dummyConversations, dummyProjects, dummyVersion } from '../assets/assets'
 import Sidebar from '../components/Sidebar'
 
 const Projects = () => {
@@ -22,7 +22,7 @@ const Projects = () => {
     const project = dummyProjects.find(project => project.id === projectId)
     setTimeout(() => {
       if (project) {
-        setProject({ ...project, conversation: dummyConversations });
+        setProject({ ...project, conversation: dummyConversations, versions: dummyVersion});
         setLoading(false)
         setIsGenrating(project.current_code ? false : true)
       } else {
@@ -112,7 +112,7 @@ const Projects = () => {
       </div>
       <div className='flex-1 flex overflow-auto'>
           <Sidebar isMenuOpen={isMenuOpen} project={Project} setProject={(p)=>setProject(p)} 
-            isGenrating={isGenrating} setIsGenrating={setIsGenrating}/>
+            isGenrating={isGenrating} setIsGenrating={setIsGenrating} />
           <div className='flex-1 p-2 pl-0'>
             Project Review
           </div>
