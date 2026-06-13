@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import type { Project } from '../types'
 import { ArrowBigDownDashIcon, EyeIcon, EyeOff, EyeOffIcon, FullscreenIcon, Laptop, LaptopIcon, Loader2Icon, MessageSquare, MessageSquareIcon, SaveIcon, Smartphone, SmartphoneIcon, Tablet, TabletIcon, XIcon } from 'lucide-react'
 import { dummyConversations, dummyProjects, dummyVersion } from '../assets/assets'
 import Sidebar from '../components/Sidebar'
+import ProjectPreview, { type ProjectPreviewRef } from '../components/ProjectPreview'
 
 const Projects = () => {
   const { projectId } = useParams()
@@ -17,6 +18,8 @@ const Projects = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(true)
   const [isSaving, SetIsSaving] = useState(false)
+
+  const previewRef = useRef<ProjectPreviewRef>(null)
 
   const fetchProject = async () => {
     const project = dummyProjects.find(project => project.id === projectId)
@@ -96,12 +99,14 @@ const Projects = () => {
               py-1 rounded sm:rounded-sm border border-gray-700 hover:border-gray-500 transition-colors'>
               <FullscreenIcon size={16}/>Preview
             </Link>
+
             <button onClick={downloadCode} className='bg-linear-to-br from-blue-700 to-blue-600 hover:from-blue-600
              hover:to-blue-500 text-white px-3.5 py-1 flex items-center gap-2 rounded
              sm:rounded-sm transition-colors'>
               <ArrowBigDownDashIcon size={16}/>Download
             </button>
-            <button onClick={togglePublish} className='bg-linear-to-br from-indigo-700 to-indigo-600 hover:from-indigo-600 
+
+            <button onClick={togglePublish} className='bg-liear-to-br from-indigo-700 to-indigo-600 hover:from-indigo-600 
             hover:to-indigo-500 text-white px-3.5 py-1 flex items-center gap-2 rounded sm-rounded-sm transition-colors'>
               {Project.isPublished ?
               <EyeOffIcon size={16}/> : <EyeIcon size={16}/>
@@ -114,7 +119,7 @@ const Projects = () => {
           <Sidebar isMenuOpen={isMenuOpen} project={Project} setProject={(p)=>setProject(p)} 
             isGenrating={isGenrating} setIsGenrating={setIsGenrating} />
           <div className='flex-1 p-2 pl-0'>
-            Project Review
+            <ProjectPreview ref={previewRef} project={Project} isGenrating={isGenrating} device={device} /> 
           </div>
       </div>
     </div>

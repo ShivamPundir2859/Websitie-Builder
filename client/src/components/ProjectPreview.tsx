@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import type { Project } from '../types';
 import { iframeScript } from '../assets/assets';
 
@@ -16,7 +16,14 @@ export interface ProjectPreviewRef{
 const ProjectPreview = forwardRef<ProjectPreviewRef, ProjectPreviewProps>(
    ({project, isGenrating, device = 'desktop', showEditorPanel = true}, ref) => {
 
-      const iframeRef = useRef<HTMLFrameElement>(null)
+      const iframeRef = useRef<HTMLIFrameElement>(null)
+
+      const resolutions = {
+         phone: 'w-[412px]',
+         tablet: 'w-[768px]',
+         desktop: 'w-full'
+      }
+
       const injectPreview = (html: string) =>{
          if(!html)return '';
          if(!showEditorPanel) return html
@@ -30,12 +37,12 @@ const ProjectPreview = forwardRef<ProjectPreviewRef, ProjectPreviewProps>(
   return (
     <div className='relative h-full bg-gray-900 flex-1 rounded-xl overflow-hidden max-sm:ml-2'>
       {project.current_code? (
-         <>
          <iframe 
-         ref={iframeRef}
-         srcDoc={injectPreview(project.current_code)}/>
-         </>
-      ): isGenrating&& (
+            ref={iframeRef}
+            srcDoc={injectPreview(project.current_code)}
+            className={`h-full max-sm:w-full ${resolutions[device]} mx-auto transition-all`}
+         />
+      ): isGenrating && (
          <div>loading</div>
       )}
     </div>

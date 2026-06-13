@@ -59,3 +59,6 @@ client/tsconfig.tsbuildinfo
 
 # VS Code extension history
 .history/
+
+#Explnation
+.Sidebar_Explained.md
