@@ -1,8 +1,5 @@
 import { X } from "lucide-react";
-import test from "node:test";
 import React, { useEffect, useState } from "react";
-import { text } from "stream/consumers";
-import type { Update } from "vite";
 
 
 interface EditorPanelProps {
@@ -98,10 +95,10 @@ const EditorPanel = ({ selectedElement, onUpdate, onClose }: EditorPanelProps) =
                 <div className="grid grid-cols-2 gap-3">
                     <div>
                         <label className="block text-xs font-medium text-gray-500 mb-1">Background</label>
-                        <div className="flex item-center gap-2 border border-gray-400 rounded-md p-1">
+                        <div className="flex items-center gap-2 border border-gray-400 rounded-md p-1">
                             <input type='color'
                                 value={values.styles.backgroundColor === 'rbga(0,0,0,0)' ? '#ffffff' : values.styles.backgroundColor}
-                                onChange={(e) => handleStyleChange('fontSize', e.target.value)}
+                                onChange={(e) => handleStyleChange('backgroundColor', e.target.value)}
                                 className="w-6 h-6 rounded cursor-pointer" />
                             <span className="text-xs text-gray-600 truncate">{values.styles.backgroundColor}</span>
                         </div>
@@ -109,7 +106,7 @@ const EditorPanel = ({ selectedElement, onUpdate, onClose }: EditorPanelProps) =
 
                     <div>
                         <label className="block text-xs font-medium text-gray-500 mb-1">Text Color</label>
-                        <div className="flex item-center gap-2 border border-gray-400 rounded-md p-1">
+                        <div className="flex items-center gap-2 border border-gray-400 rounded-md p-1">
                             <input type='color'
                                 value={values.styles.color}
                                 onChange={(e) => handleStyleChange('color', e.target.value)}
