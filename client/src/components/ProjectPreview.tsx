@@ -27,7 +27,7 @@ const ProjectPreview = forwardRef<ProjectPreviewRef, ProjectPreviewProps>(
          desktop: 'w-full'
       }
 
-   useImperativeHandle(ref, () => {
+   useImperativeHandle(ref, () => ({
       getCode: ()=>{
          const doc = iframeRef.current?.contentDocument;
          if(!doc) return undefined;
@@ -51,7 +51,7 @@ const ProjectPreview = forwardRef<ProjectPreviewRef, ProjectPreviewProps>(
          const html = doc.documentElement.outerHTML;
          return html;
       }
-   })
+   }))
    
 
       useEffect(() => {

@@ -40,7 +40,7 @@ const Projects = () => {
 
   // Download code (index.html)
   const downloadCode = async() =>{
-    const code = previewRef.current?.getCode() || project?.current_code;
+    const code = previewRef.current?.getCode() || Project?.current_code;
     if(!code){
       if(isGenrating){
         return
@@ -53,6 +53,7 @@ const Projects = () => {
     element.download = 'index.html';
     document.body.appendChild(element)
     element.click();
+    document.body.removeChild(element);
   }
 
   const togglePublish = async() =>{
@@ -102,7 +103,7 @@ const Projects = () => {
         </div>
         {/* Right */}
         <div className='flex items-center justify-end gap-3 flex-1 text-xs sm:text-sm'>
-            <button onClick={saveProject} disabled={isSaving} className='max-sm:hidder bg-gray-800 hover:bg-gray-700 text-white px-3.5
+            <button onClick={saveProject} disabled={isSaving} className='max-sm:hidden bg-gray-800 hover:bg-gray-700 text-white px-3.5
             py-1 flex items-center gap-2 rounded sm:rounded-sm transition-colors border border-gray-700'>
               {isSaving ? <Loader2Icon className='animate-spin' size={16}/> :
               <SaveIcon size={16}/>}
@@ -119,8 +120,8 @@ const Projects = () => {
               <ArrowBigDownDashIcon size={16}/>Download
             </button>
 
-            <button onClick={togglePublish} className='bg-liear-to-br from-indigo-700 to-indigo-600 hover:from-indigo-600 
-            hover:to-indigo-500 text-white px-3.5 py-1 flex items-center gap-2 rounded sm-rounded-sm transition-colors'>
+            <button onClick={togglePublish} className='bg-linear-to-br from-indigo-700 to-indigo-600 hover:from-indigo-600 
+            hover:to-indigo-500 text-white px-3.5 py-1 flex items-center gap-2 rounded sm:rounded-sm transition-colors'>
               {Project.isPublished ?
               <EyeOffIcon size={16}/> : <EyeIcon size={16}/>
               }
