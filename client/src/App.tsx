@@ -7,6 +7,7 @@ import MyProjects from './pages/MyProjects'
 import Preview from './pages/Preview'
 import Community from './pages/Community'
 import Navbar from './components/Navbar'
+import { Toaster } from "@/components/ui/sonner"
 
 export default function App() {
 
@@ -18,6 +19,7 @@ export default function App() {
 
   return (
     <div>
+      <Toaster />
       {!hideNavbar && <Navbar/>}
       <Routes>
         <Route path='/' element ={<Home/>} />
